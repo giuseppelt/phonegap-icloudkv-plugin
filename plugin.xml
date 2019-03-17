@@ -2,7 +2,7 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
            id="fr.pierrickrouxel.cordova.plugin.iCloudKV"
-      version="0.3.0">
+      version="0.4.0">
 
     <name>iCloudKV</name>
     <description>Cordova iCloud Key Value Plugin</description>
@@ -29,5 +29,16 @@
         <header-file src="src/ios/iCloudKV.h" />
         <source-file src="src/ios/iCloudKV.m" />
     </platform>
+
+    <!-- osx -->
+    <platform name="osx">
+        <config-file target="config.xml" parent="/*">
+            <feature name="iCloudKV">
+                <param name="osx-package" value="iCloudKV"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/iCloudKV.h" />
+        <source-file src="src/ios/iCloudKV.m" />
+    </platform>    
 
 </plugin>
