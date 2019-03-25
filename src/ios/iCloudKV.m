@@ -107,11 +107,12 @@
             NSLog(@"iCloudKV initial sync notification.");
             break;
         case NSUbiquitousKeyValueStoreServerChange:
-            NSLog(@"iCloudKV server change notification.");
-            NSDictionary    *changedKeys   = [[receivedNotification userInfo] valueForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
-
-            NSString *jsStatement = [NSString stringWithFormat:@"iCloudKV.didChanged(%@);", [NSJSONSerialization dataWithJSONObject:changedKeys options:NSJSONWritingPrettyPrinted error:nil]];
-            [self writeJavascript:jsStatement];
+            NSLog(@"iCloudKV server change");
+            NSArray *changedKeys = [[receivedNotification userInfo] valueForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
+            NSData *data = [NSJSONSerialization dataWithJSONObject:changedKeys options:kNilOptions error:nil];
+            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSString *jsStatement = [NSString stringWithFormat:@"iCloudKV.didChanged(%@);", json];
+            [self.commandDelegate evalJs:jsStatement];
             break;
     }
 }

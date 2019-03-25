@@ -1,11 +1,12 @@
 {
   "name": "phonegap-icloudkv-plugin",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "description": "Cordova iCloud Key Value Plugin",
   "cordova": {
     "id": "fr.pierrickrouxel.cordova.plugin.iCloudKV",
     "platforms": [
-      "ios"
+      "ios",
+      "osx"
     ]
   },
   "repository": {
@@ -16,8 +17,10 @@
     "cordova",
     "icloud",
     "ios",
+    "osx",
     "ecosystem:cordova",
-    "cordova-ios"
+    "cordova-ios",
+    "cordova-osx"
   ],
   "engines": [
     {

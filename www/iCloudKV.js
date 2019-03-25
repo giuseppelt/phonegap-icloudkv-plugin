@@ -3,11 +3,21 @@
 var iCloudKV = exports;
 
 var exec = require('cordova/exec');
-var cordova = require('cordova');
+
+/**
+ * Workaround for missing nativeEvalAndFetch on cordova-osx
+ */
+if (!exec.nativeEvalAndFetch) {
+  exec.nativeEvalAndFetch = function (f) {
+    try {
+      f();
+    } catch (e) { }
+  };
+}
 
 iCloudKV.onChange = null;
 
-iCloudKV.sync = function(success, fail) {
+iCloudKV.sync = function (success, fail) {
   exec(success /*(dictionary_with_all_sync_keys)*/, fail, "iCloudKV", "sync", []);
 };
 
